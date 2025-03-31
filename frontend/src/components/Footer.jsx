@@ -12,9 +12,9 @@ import React from "react";
 const Footer = () => {
   return (
     <Box sx={{ bgcolor: "#0E185F", width: "100%" }}>
-      <Container maxWidth="xl" sx={{ py: 4 }}>
+      <Container maxWidth="xl" sx={{ py: 2 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-          {/* Left section - About Us */}
+          {/* o nama - lijevo */}
           <Box sx={{ maxWidth: 420 }}>
             <Typography
               variant="h4"
@@ -23,8 +23,8 @@ const Footer = () => {
                 fontFamily: "Montserrat-Bold, Helvetica",
                 fontWeight: 700,
                 fontSize: 32,
-                mb: 3,
-                textAlign: "left", // aligns "O nama" to the left
+                mb: 2,
+                textAlign: "left",
               }}
             >
               O nama
@@ -37,7 +37,7 @@ const Footer = () => {
                 fontWeight: 500,
                 fontSize: 16,
                 lineHeight: 1.5,
-                textAlign: "justify", // justifies the text below
+                textAlign: "justify",
               }}
             >
               Kompas obrazovanja je dedicirana platforma za pomoć učenicima i
@@ -46,7 +46,7 @@ const Footer = () => {
             </Typography>
           </Box>
 
-          {/* Right section - Contact */}
+          {/* kontakt - desno */}
           <Box sx={{ textAlign: "left" }}>
             <Typography
               variant="body1"
@@ -54,7 +54,7 @@ const Footer = () => {
                 color: "#F8F9FA",
                 fontFamily: "Lato-Regular, Helvetica",
                 fontWeight: 400,
-                fontSize: 24,
+                fontSize: 22,
                 textAlign: "left",
               }}
             >

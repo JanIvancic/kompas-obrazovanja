@@ -10,7 +10,7 @@ function App() {
       className="App"
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
-      <Header />
+      <Header />s
       <main style={{ flex: 1 }}>
         <div className="content">
           <img src={logo} className="App-logo" alt="logo" />
