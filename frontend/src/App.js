@@ -6,9 +6,12 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Header />
-      <main>
+      <main style={{ flex: 1 }}>
         <div className="content">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
