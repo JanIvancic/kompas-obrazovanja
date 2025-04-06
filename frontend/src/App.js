@@ -1,22 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LandingPage from './components/LandingPage';
+import SignUpPage from './components/SignUpPage';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  const hideLayoutRoutes = ['/signup'];
+  const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
+
   return (
     <div
       className="App"
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
     >
-      <Header />
-      <LandingPage />
-      <Footer />
+      {!shouldHideLayout && <Header />}
+
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+
+      {!shouldHideLayout && <Footer />}
     </div>
   );
 }
 
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
 
 export default App;
