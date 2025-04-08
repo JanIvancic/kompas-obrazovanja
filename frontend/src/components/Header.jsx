@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const HeadLink = styled(Typography)(({ theme, active }) => ({
+const HeadLink = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) => ({
   color: "#292929",
   fontSize: 16,
   letterSpacing: "0.5px",
@@ -25,7 +28,7 @@ const HeadLink = styled(Typography)(({ theme, active }) => ({
 
 const Header = () => {
   const navLinks = [
-    { title: "Početna", active: true },
+    { title: "Početna", active: true, route: "/" },
     { title: "Chatbot", active: false },
     { title: "Testovi", active: false },
     { title: "Popis škola", active: false },
@@ -60,15 +63,21 @@ const Header = () => {
 
           {/* nav */}
           <Stack direction="row" spacing={8}>
-            {navLinks.map((link, index) => (
-              <HeadLink
-                key={index}
-                active={link.active ? 1 : 0}
-                fontWeight={link.active ? "bold" : "normal"}
-              >
-                {link.title}
-              </HeadLink>
-            ))}
+            {navLinks.map((link, index) =>
+              link.route ? (
+                <Link
+                  key={index}
+                  to={link.route}
+                  style={{ textDecoration: "none" }}
+                >
+                  <HeadLink active={link.active ? 1 : 0}>{link.title}</HeadLink>
+                </Link>
+              ) : (
+                <HeadLink key={index} active={link.active ? 1 : 0}>
+                  {link.title}
+                </HeadLink>
+              )
+            )}
           </Stack>
 
           {/* auth */}
@@ -88,6 +97,8 @@ const Header = () => {
                   bgcolor: "#1a93ee",
                 },
               }}
+              component={Link}
+              to="/register"
             >
               Registriraj se
             </Button>
@@ -106,6 +117,8 @@ const Header = () => {
                   bgcolor: "#1a93ee",
                 },
               }}
+              component={Link}
+              to="/login"
             >
               Prijavi se
             </Button>

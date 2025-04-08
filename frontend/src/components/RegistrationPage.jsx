@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -7,16 +7,16 @@ import {
   FormControlLabel,
   TextField,
   Typography,
-  Link,
-  Paper
-} from '@mui/material';
+  Paper,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function SignUpPage() {
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
     subscribe: false,
   });
 
@@ -26,19 +26,19 @@ export default function SignUpPage() {
     const { name, value, checked, type } = e.target;
     setFormValues({
       ...formValues,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const validate = () => {
     const newErrors = {};
-    if (!formValues.name.trim()) newErrors.name = 'Ime i prezime je obavezno.';
+    if (!formValues.name.trim()) newErrors.name = "Ime i prezime je obavezno.";
     if (!/\S+@\S+\.\S+/.test(formValues.email))
-      newErrors.email = 'Unesite ispravnu email adresu.';
+      newErrors.email = "Unesite ispravnu email adresu.";
     if (formValues.password.length < 6)
-      newErrors.password = 'Lozinka mora imati barem 6 znakova.';
+      newErrors.password = "Lozinka mora imati barem 6 znakova.";
     if (formValues.password !== formValues.confirmPassword)
-      newErrors.confirmPassword = 'Lozinke se ne podudaraju.';
+      newErrors.confirmPassword = "Lozinke se ne podudaraju.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -47,8 +47,8 @@ export default function SignUpPage() {
     e.preventDefault();
     if (!validate()) return;
 
-    console.log('Podaci za registraciju:', formValues);
-    alert('Registracija uspješna (mock)!');
+    console.log("Podaci za registraciju:", formValues);
+    alert("Registracija uspješna (mock)!");
   };
 
   return (
@@ -116,10 +116,13 @@ export default function SignUpPage() {
           </Button>
         </Box>
         <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-          Već imate račun?{' '}
-          <Link href="/signin">
+          Već imate račun?{" "}
+          <Typography href="/signin"
+          component={Link}
+          to="/login" 
+          >
             Prijavite se
-          </Link>
+          </Typography>
         </Typography>
       </Paper>
     </Container>
