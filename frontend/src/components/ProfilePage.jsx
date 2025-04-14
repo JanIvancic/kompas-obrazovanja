@@ -195,7 +195,53 @@ export default function ProfilePage() {
           </Card>
         </Box>
 
-        
+        {/* Desni sadržaj */}
+        <Box sx={{ flex: 1, maxWidth: "calc(50% - 90px)", mr: "60px" }}>
+          <Stack spacing={8}>
+            {/* Premium korisnik */}
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>Premium korisnik</Typography>
+              <Card sx={{ p: 3 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  Trenutna pretplata: premium
+                  <br />
+                  Sljedeći datum plaćanja: 14.4.2025.
+                </Typography>
+                <Button variant="contained" sx={{ ...buttonStyle }}>
+                  Otkaži pretplatu
+                </Button>
+              </Card>
+            </Box>
+
+            {/* Iskustvo */}
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>Iskustvo</Typography>
+              <Card sx={{ p: 3 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  Napiši svoje iskustvo o školi i smjeru kojeg si pohađao/la.
+                </Typography>
+                <Button variant="contained" sx={{ ...buttonStyle }}>
+                  Započni
+                </Button>
+              </Card>
+            </Box>
+
+            {/* Rezultati testova */}
+            <Box sx={{ width: "100%" }}>
+              <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>Rezultati testova</Typography>
+              <Card sx={{ p: 3 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  Karijerni orijentacijski test
+                </Typography>
+                <Button variant="contained" sx={{ ...buttonStyle }}>
+                  Rezultati
+                </Button>
+              </Card>
+            </Box>
+          </Stack>
+        </Box>
+         {/* Desni razmak za reklame */}
+         <Box sx={{ width: "50px" }} />
       </Stack>
     </Container>
   );
