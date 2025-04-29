@@ -1,0 +1,71 @@
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+
+## Build output
+bin/
+obj/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Logs
+*.log
+logs/
+
+## NuGet
+*.nupkg
+.nuget/
+
+# Packages folder (if you restore locally)
+packages/
+
+## Dotnet Watch
+.watch/
+
+## Entity Framework Core Migrations history
+Migrations/
+
+## ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## OS files
+*.DS_Store
+Thumbs.db
+
+## Docker
+docker-compose.override.yml
+**/docker-compose.*.yml
+
+## Secret storage (if you use ASP.NET Core Secret Manager)
+secrets.json
+
+## NPM / frontend (if you ever check front-end into same repo)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+## Rider
+.idea/
+
+## JetBrains Rider plugin data
+.idea/
+
+## Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+## Test results
+TestResults/
+*.trx
+
+## Others
+*.pidb
+*.svclog
+*.pdb
+*.cache
+*.dbmdl
