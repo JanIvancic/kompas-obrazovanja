@@ -1,12 +1,30 @@
+using Kompas.Obrazovanja.Database;
+using Kompas.Obrazovanja.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+builder.Services.AddDbContext<KompasDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("KompasPostgres"),
+        npgsql => npgsql.EnableRetryOnFailure()
+    )
+);
+
 builder.Services.AddOpenApi();
+
+builder.Services.AddTransient<DataSeeder>();
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    await seeder.SeedVarazdinskeSkoleAsync();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -16,12 +34,13 @@ app.UseHttpsRedirection();
 
 var summaries = new[]
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+    "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", (KompasDbContext db) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -32,6 +51,21 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+app.MapGet("/api/schools", async (KompasDbContext db) =>
+    await db.Skole
+            .Select(s => new {
+                s.SkolaId,
+                s.NazivSkole,
+                s.Adresa,
+                s.Opis,
+                Grad = s.Grad.NazivGrada
+            })
+            .ToListAsync()
+)
+.WithName("GetSchools");
+
+
 
 app.Run();
 
