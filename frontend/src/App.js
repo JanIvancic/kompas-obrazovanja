@@ -7,6 +7,7 @@ import Header from './components/Header';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import RegistrationPage from './components/RegistrationPage';
+import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <Footer />
