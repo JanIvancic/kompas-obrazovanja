@@ -8,8 +8,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Model", "Kompas.Obrazovanja.Model\Kompas.Obrazovanja.Model.csproj", "{4CC438C4-303D-4187-BDAC-3CEF25703ADA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Repository", "Kompas.Obrazovanja.Repository\Kompas.Obrazovanja.Repository.csproj", "{73A290A3-DDCD-49DE-8207-B1CA3BDAAE48}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CC438C4-303D-4187-BDAC-3CEF25703ADA} = {4CC438C4-303D-4187-BDAC-3CEF25703ADA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Service", "Kompas.Obrazovanja.Service\Kompas.Obrazovanja.Service.csproj", "{B78D9B6E-4F09-4420-BE46-D596C5FCA313}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CC438C4-303D-4187-BDAC-3CEF25703ADA} = {4CC438C4-303D-4187-BDAC-3CEF25703ADA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Infrastructure", "Kompas.Obrazovanja.Infrastructure\Kompas.Obrazovanja.Infrastructure.csproj", "{294FBE48-E9FF-4C10-98E3-717915565E9A}"
 EndProject
@@ -22,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.IoC", "Kompas.Obrazovanja.IoC\Kompas.Obrazovanja.IoC.csproj", "{043F48D6-2CC5-4051-9ABC-770211A74B6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.WebAPI", "Kompas.Obrazovanja.WebAPI\Kompas.Obrazovanja.WebAPI.csproj", "{035639A0-0178-49D6-9139-E1599B4B8125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Database", "Kompas.Obrazovanja.Database\Kompas.Obrazovanja.Database.csproj", "{927B93C6-14EC-444C-94EA-9CA46AD71156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,8 +161,23 @@ Global
 		{035639A0-0178-49D6-9139-E1599B4B8125}.Release|x64.Build.0 = Release|Any CPU
 		{035639A0-0178-49D6-9139-E1599B4B8125}.Release|x86.ActiveCfg = Release|Any CPU
 		{035639A0-0178-49D6-9139-E1599B4B8125}.Release|x86.Build.0 = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|x64.Build.0 = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Debug|x86.Build.0 = Debug|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|x64.ActiveCfg = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|x64.Build.0 = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|x86.ActiveCfg = Release|Any CPU
+		{927B93C6-14EC-444C-94EA-9CA46AD71156}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5413109C-C6D2-4316-8930-E671DAB0F927}
 	EndGlobalSection
 EndGlobal
