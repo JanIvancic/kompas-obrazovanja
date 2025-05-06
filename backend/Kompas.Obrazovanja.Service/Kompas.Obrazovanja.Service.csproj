@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Kompas.Obrazovanja.Model\Kompas.Obrazovanja.Model.csproj" />
+    <ProjectReference Include="..\Kompas.Obrazovanja.Repository\Kompas.Obrazovanja.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

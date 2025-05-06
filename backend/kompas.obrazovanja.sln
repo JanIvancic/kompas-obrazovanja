@@ -8,8 +8,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Model", "Kompas.Obrazovanja.Model\Kompas.Obrazovanja.Model.csproj", "{4CC438C4-303D-4187-BDAC-3CEF25703ADA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Repository", "Kompas.Obrazovanja.Repository\Kompas.Obrazovanja.Repository.csproj", "{73A290A3-DDCD-49DE-8207-B1CA3BDAAE48}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CC438C4-303D-4187-BDAC-3CEF25703ADA} = {4CC438C4-303D-4187-BDAC-3CEF25703ADA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Service", "Kompas.Obrazovanja.Service\Kompas.Obrazovanja.Service.csproj", "{B78D9B6E-4F09-4420-BE46-D596C5FCA313}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CC438C4-303D-4187-BDAC-3CEF25703ADA} = {4CC438C4-303D-4187-BDAC-3CEF25703ADA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas.Obrazovanja.Infrastructure", "Kompas.Obrazovanja.Infrastructure\Kompas.Obrazovanja.Infrastructure.csproj", "{294FBE48-E9FF-4C10-98E3-717915565E9A}"
 EndProject
@@ -170,5 +176,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5413109C-C6D2-4316-8930-E671DAB0F927}
 	EndGlobalSection
 EndGlobal

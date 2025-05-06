@@ -21,6 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Kompas.Obrazovanja.Database\Kompas.Obrazovanja.Database.csproj" />
     <ProjectReference Include="..\Kompas.Obrazovanja.Infrastructure\Kompas.Obrazovanja.Infrastructure.csproj" />
+    <ProjectReference Include="..\Kompas.Obrazovanja.IoC\Kompas.Obrazovanja.IoC.csproj" />
+    <ProjectReference Include="..\Kompas.Obrazovanja.Service\Kompas.Obrazovanja.Service.csproj" />
+    <ProjectReference Include="..\Kompas.Obrazovanja.Chatbot.Contract\Kompas.Obrazovanja.Chatbot.Contract.csproj" />
+    <ProjectReference Include="..\Kompas.Obrazovanja.Chatbot.Service\Kompas.Obrazovanja.Chatbot.Service.csproj" />
   </ItemGroup>
 
 </Project>

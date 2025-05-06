@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Kompas.Obrazovanja.Chatbot.Contract\Kompas.Obrazovanja.Chatbot.Contract.csproj" />
+  </ItemGroup>
+
 </Project>
