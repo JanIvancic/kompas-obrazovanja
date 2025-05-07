@@ -4,8 +4,8 @@ using Kompas.Obrazovanja.Infrastructure.Chatbot;
 using Kompas.Obrazovanja.Repository.Interfaces;
 using Kompas.Obrazovanja.Repository.Implementations;
 using Kompas.Obrazovanja.Service.Interfaces;
-using Kompas.Obrazovanja.Service.Implementations;
 using Microsoft.Extensions.DependencyInjection;
+using Kompas.Obrazovanja.Service;
 namespace Kompas.Obrazovanja.IoC;
 public static class DependencyInjection
 {
