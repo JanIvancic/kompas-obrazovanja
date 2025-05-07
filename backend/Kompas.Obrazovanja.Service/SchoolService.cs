@@ -1,10 +1,29 @@
-﻿using Kompas.Obrazovanja.Model;
-using Kompas.Obrazovanja.Repository.Interfaces;
+﻿using Kompas.Obrazovanja.Contract.DTOs;
+using Kompas.Obrazovanja.Database;
 using Kompas.Obrazovanja.Service.Interfaces;
-namespace Kompas.Obrazovanja.Service.Implementations;
-public class SchoolService : ISchoolService
+using Microsoft.EntityFrameworkCore;
+
+namespace Kompas.Obrazovanja.Service
 {
-    private readonly ISchoolRepository _repo;
-    public SchoolService(ISchoolRepository repo) => _repo = repo;
-    public Task<IEnumerable<Skola>> GetAllAsync() => _repo.GetAllAsync();
+    public class SchoolService : ISchoolService
+    {
+        private readonly KompasDbContext _db;
+        public SchoolService(KompasDbContext db) => _db = db;
+
+        public async Task<IEnumerable<SchoolDto>> GetAllAsync()
+        {
+            return await _db.Skole
+                .AsNoTracking()
+                .Include(s => s.Grad)
+                .Select(s => new SchoolDto
+                {
+                    SkolaId = s.SkolaId,
+                    Naziv = s.NazivSkole,
+                    Adresa = s.Adresa,
+                    Opis = s.Opis,
+                    Grad = s.Grad.NazivGrada
+                })
+                .ToListAsync();
+        }
+    }
 }

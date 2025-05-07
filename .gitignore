@@ -1,0 +1,4 @@
+# Root level .gitignore
+
+# Backend
+/backend/

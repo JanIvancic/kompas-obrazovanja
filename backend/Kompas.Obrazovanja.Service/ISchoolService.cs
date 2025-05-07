@@ -1,6 +1,9 @@
-﻿using Kompas.Obrazovanja.Model;
-namespace Kompas.Obrazovanja.Service.Interfaces;
-public interface ISchoolService
+﻿using Kompas.Obrazovanja.Contract.DTOs;
+
+namespace Kompas.Obrazovanja.Service.Interfaces
 {
-    Task<IEnumerable<Skola>> GetAllAsync();
+    public interface ISchoolService
+    {
+        Task<IEnumerable<SchoolDto>> GetAllAsync();
+    }
 }

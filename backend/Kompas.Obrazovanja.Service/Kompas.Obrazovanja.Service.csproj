@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kompas.Obrazovanja.Contract\Kompas.Obrazovanja.Contract.csproj" />
     <ProjectReference Include="..\Kompas.Obrazovanja.Model\Kompas.Obrazovanja.Model.csproj" />
     <ProjectReference Include="..\Kompas.Obrazovanja.Repository\Kompas.Obrazovanja.Repository.csproj" />
+	<ProjectReference Include="..\Kompas.Obrazovanja.Contract\Kompas.Obrazovanja.Contract.csproj" />
+
   </ItemGroup>
 
 </Project>

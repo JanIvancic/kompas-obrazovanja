@@ -29,9 +29,9 @@ const HeadLink = styled(Typography, {
 const Header = () => {
   const navLinks = [
     { title: "Početna", active: true, route: "/" },
-    { title: "Chatbot", active: false },
-    { title: "Testovi", active: false },
-    { title: "Popis škola", active: false },
+    { title: "Chatbot", active: true, route: "/chat" },
+    { title: "Testovi", active: true, route: "/tests" },
+    { title: "Popis škola", active: true, route: "/school" },
   ];
 
   return (
