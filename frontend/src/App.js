@@ -10,6 +10,8 @@ import RegistrationPage from './components/RegistrationPage';
 import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
 import SchoolsList from './components/Schools/SchoolsList';
+import ChatPage from './components/ChatPage';
+import TestsPage from './components/TestsPage';
 
 function App() {
   return (
