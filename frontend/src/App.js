@@ -9,24 +9,31 @@ import LoginPage from './components/LoginPage';
 import RegistrationPage from './components/RegistrationPage';
 import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
+import TestPage from './components/TestPage';
+import TestListPage from './components/TestListPage';
+import SchoolDetails from './components/SchoolDetails';
 
 function App() {
   return (
     <Router>
-      <div className="App" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div className="App">
         <Header />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/support" element={<SupportPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Routes>
+        <main className="content-container">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/tests" element={<TestPage />} />
+            <Route path="/test-list" element={<TestListPage />} />
+            <Route path="/school/:id" element={<SchoolDetails />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>
   );
 }
-
 
 export default App;

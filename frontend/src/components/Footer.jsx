@@ -11,7 +11,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "#0E185F", width: "100%" }}>
+    <Box sx={{ bgcolor: "#0E185F", width: "100%", position: "relative" }}>
       <Container maxWidth="xl" sx={{ py: 2 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
           {/* o nama - lijevo */}
