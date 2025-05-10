@@ -39,7 +39,17 @@ export default function ChatScreen() {
     'Zanima me matematika.': 'Odlično! Ako te zanima matematika, preporučam ti prirodoslovno matematičku gimnaziju.',
     'Nisam siguran što želim upisati.': 'To je u redu. Tu sam da ti pomognem, reci mi što te zanima.',
     'Zanimaju me jezici, najviše engleski i francuski.': 'Odlično! Preporučam ti jezičnu gimnaziju.',
-    'Trenutno idem u glazbenu školu i jako volim svirati gitaru.': 'To je super! Jako bi se dobro uklopio u srednju glazbenu školu.'
+    'Trenutno idem u glazbenu školu i jako volim svirati gitaru.': 'To je super! Jako bi se dobro uklopio u srednju glazbenu školu.',
+    'U Zagrebu sam, ali ne znam u koju u skolu da idem i ne znam što bih dalje radio.': 'Razumijem, dati ću ti poveznicu na matemičku gimnaziju pa ćeš imati još 4 godine da te usmjeri: https://www.mioc.hr/wp/',
+    'Volim informatiku i programiranje.': 'Izvrsno! Savjetujem ti da pogledaš elektrotehničke škole s računalnim usmjerenjem, npr. Tehnička škola Ruđera Boškovića.',
+    'Zanima me umjetnost i dizajn.': 'Super! Preporučam ti Školu likovnih umjetnosti i dizajna, gdje možeš razvijati kreativne vještine.',
+    'Želim se baviti medicinom.': 'Odlično! Potraži gimnazije s prirodoslovno-matematičkim programom i pripremi se za medicinski fakultet nakon srednje.',
+    'Ne sviđa mi se nikakav teorijski predmet, više volim praktične radionice.': 'Razumijem – razmisli o srednjoj strukovnoj školi, npr. za strojarskog ili elektrotehničkog tehničara, gdje je puno praktičnog rada.',
+    'Kako se prijavljuje u srednju školu?': 'Prijava se obavlja elektroničkim putem preko stranice e-Upisi, a proces počinje u svibnju – sve detalje pronađi na https://e-upisi.skole.hr.',
+    'Živim u Varaždinu, što mi preporučaš?': 'U Varaždinu su odlične Prva gimnazija Varaždin i Ekonomska i trgovačka škola Varaždin – oboje nude kvalitetan program i dobru pripremu za studij.',
+    'Stanujem u Čakovcu, koju školu da upišem?': 'U Čakovcu je vrlo tražena Gimnazija Josipa Slavenskog Čakovec, a za strukovne programe pogledaj Srednju strukovnu školu Čakovec.',
+    'Dolazim iz Jastrebarskog, ima li dobra gimnazija?': 'U Jastrebarskom je mala ali izvrsna Srednja škola Jastrebarsko s prirodoslovnim i općim programom, idealna za bližu okolinu.',
+    'Živim u Velikoj Gorici, što mi savjetuješ?': 'U Velikoj Gorici svakako provjeri Gimnaziju Velika Gorica, a ako voliš elektrotehniku, Obrtnička i tehnička škola nudi jako dobar smjer za računalstvo.'
   };
 
   const handleSend = () => {
