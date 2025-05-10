@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
     return (
@@ -69,6 +70,8 @@ const LandingPage = () => {
               </Box>
     
               <Button
+                component={Link}
+                to="/chat"
                 variant="contained"
                 sx={{
                   mt: 2,
