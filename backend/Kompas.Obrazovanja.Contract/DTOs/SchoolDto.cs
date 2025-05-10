@@ -11,5 +11,7 @@
         public string? Email { get; set; }
         public string? Fax { get; set; }
         public string? WebStranica { get; set; }
+        public string Opis { get; set; } = null!;
+        public string Grad { get; set; } = null!;
     }
 }
