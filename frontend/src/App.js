@@ -10,6 +10,8 @@ import RegistrationPage from './components/RegistrationPage';
 import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
 import SchoolsList from './components/Schools/SchoolsList';
+import ChatWidget from './components/ChatWidget';
+import ChatScreen from './components/ChatScreen';
 
 function App() {
   return (
@@ -23,8 +25,10 @@ function App() {
           <Route path="/support" element={<SupportPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/schools" element={<SchoolsList />} />
+          <Route path="/chat" element={<ChatScreen />} />
         </Routes>
         <Footer />
+        <ChatWidget />
       </div>
     </Router>
   );
