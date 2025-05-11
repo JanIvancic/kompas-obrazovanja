@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/kompas-obrazovanja">
       <div className="App" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         {isAuthenticated ?
           <AuthHeader onLogout={handleLogout} /> :
