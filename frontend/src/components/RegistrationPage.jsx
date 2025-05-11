@@ -9,7 +9,7 @@ import {
   Typography,
   Paper,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function SignUpPage() {
   const [formValues, setFormValues] = useState({
@@ -117,9 +117,9 @@ export default function SignUpPage() {
         </Box>
         <Typography variant="body2" align="center" sx={{ mt: 2 }}>
           Već imate račun?{" "}
-          <RouterLink to="/login" style={{ textDecoration: 'none' }}>
+          <Link to="/login" style={{ textDecoration: 'none', color: '#2fa4ff' }}>
             Prijavite se
-          </RouterLink>
+          </Link>
         </Typography>
       </Paper>
     </Container>

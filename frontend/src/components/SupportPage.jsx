@@ -49,10 +49,6 @@ export default function SupportPage() {
                 fullWidth
                 value={formData.email}
                 onChange={handleChange}
-                InputProps={{
-                  sx: { textAlign: 'right' },
-                  endAdornment: <InputAdornment position="end">@kompas.hr</InputAdornment>
-                }}
               />
               <TextField
                 name="poruka"

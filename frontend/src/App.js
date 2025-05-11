@@ -11,7 +11,8 @@ import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
 import SchoolsList from './components/Schools/SchoolsList';
 import ChatPage from './components/ChatPage';
-import TestsPage from './components/TestsPage';
+import TestPage from './components/TestPage';
+import TestListPage from './components/TestListPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           <Route path="/support" element={<SupportPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/schools" element={<SchoolsList />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/tests" element={<TestPage />} />
+          <Route path="/test-list" element={<TestListPage />} />
         </Routes>
         <Footer />
       </div>

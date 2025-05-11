@@ -13,6 +13,7 @@ import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -184,9 +185,9 @@ export default function SignIn(props) {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
               Niste registrirani?{' '}
-              <Typography component={Link} to="/register">
+              <Link to="/register" style={{ textDecoration: 'none', color: '#2fa4ff' }}>
                 Registrirajte se
-              </Typography>
+              </Link>
             </Typography>
           </Box>
         </Card>

@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -62,6 +63,8 @@ const Footer = () => {
             </Typography>
             <Stack direction="row" spacing={2} alignItems="center">
               <IconButton
+                component={Link}
+                to="/support"
                 sx={{
                   bgcolor: "#F8F9FA",
                   width: 40,
@@ -102,6 +105,8 @@ const Footer = () => {
             Pravila privatnosti
           </Typography>
           <Typography
+            component={Link}
+            to="/support"
             variant="body1"
             sx={{
               color: "#F8F9FA",
@@ -109,6 +114,7 @@ const Footer = () => {
               fontWeight: 600,
               fontSize: 16,
               cursor: "pointer",
+              textDecoration: "none",
             }}
           >
             Podrška
