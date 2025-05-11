@@ -34,10 +34,19 @@ function App() {
     setIsAuthenticated(true);
   };
 
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false);
+  };
+
   return (
     <Router>
       <div className="App" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-        {isAuthenticated ? <AuthHeader /> : <Header />}
+        {isAuthenticated ? 
+          <AuthHeader onLogout={handleLogout} /> : 
+          <Header />
+        }
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage onLoginSuccess={handleLogin} />} />

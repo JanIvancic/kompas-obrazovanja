@@ -27,7 +27,7 @@ const HeadLink = styled(Typography, {
   },
 }));
 
-const AuthHeader = () => {
+const AuthHeader = ({ onLogout }) => {
   const navigate = useNavigate();
   
   const navLinks = [
@@ -38,8 +38,12 @@ const AuthHeader = () => {
   ];
 
   const handleLogout = () => {
-    // Clear any auth state/tokens here
-    localStorage.removeItem('isAuthenticated');
+    // Call the logout handler from props
+    if (onLogout) {
+      onLogout();
+    }
+    
+    // Navigate to login page
     navigate('/login');
   };
 
@@ -178,3 +182,6 @@ const AuthHeader = () => {
 };
 
 export default AuthHeader;
+
+
+
