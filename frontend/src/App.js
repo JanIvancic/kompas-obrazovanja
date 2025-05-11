@@ -16,6 +16,7 @@ import ChatPage from './components/ChatPage';
 import TestPage from './components/TestPage';
 import TestListPage from './components/TestListPage';
 import IskustvoFinalno from './components/IskustvoFinalno';
+import SchoolDetailPage from './components/Schools/SchoolDetailPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,6 +58,7 @@ function App() {
             element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} 
           />
           <Route path="/schools" element={<SchoolsList />} />
+          <Route path="/school/:id" element={<SchoolDetailPage />} />
           <Route path="/chat" element={<ChatScreen />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/tests" element={<TestPage />} />
