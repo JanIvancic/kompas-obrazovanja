@@ -7,7 +7,11 @@ export const schoolsData = [
     email: "ured@gimnazija-varazdin.skole.hr",
     web: "www.gimnazija-varazdin.skole.hr",
     city: "Varaždin",
-    county: "Varaždinska županija"
+    county: "Varaždinska županija",
+    coordinates: {
+      lat: 46.305362,
+      lng: 16.337186
+    }
   },
   {
     name: "Druga gimnazija Varaždin",
@@ -17,7 +21,11 @@ export const schoolsData = [
     email: "info@gimnazija-druga-vz.skole.hr",
     web: "www.gimnazija-druga-vz.skole.hr",
     city: "Varaždin",
-    county: "Varaždinska županija"
+    county: "Varaždinska županija",
+    coordinates: {
+      lat: 46.307362,
+      lng: 16.339186
+    }
   },
   {
     name: "Glazbena škola Varaždin",

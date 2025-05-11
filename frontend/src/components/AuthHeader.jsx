@@ -29,7 +29,7 @@ const HeadLink = styled(Typography, {
 
 const AuthHeader = ({ onLogout }) => {
   const navigate = useNavigate();
-  
+
   const navLinks = [
     { title: "Početna", active: true, route: "/" },
     { title: "Chatbot", active: false, route: "/chat" },
@@ -38,12 +38,10 @@ const AuthHeader = ({ onLogout }) => {
   ];
 
   const handleLogout = () => {
-    // Call the logout handler from props
     if (onLogout) {
       onLogout();
     }
-    
-    // Navigate to login page
+
     navigate('/login');
   };
 
@@ -62,7 +60,7 @@ const AuthHeader = ({ onLogout }) => {
           disableGutters
           sx={{ height: 95, justifyContent: "space-between" }}
         >
-          {/* logo, ime */}
+
           <Stack direction="row" alignItems="center" spacing={2}>
             <Box
               sx={{
@@ -91,7 +89,7 @@ const AuthHeader = ({ onLogout }) => {
             </Typography>
           </Stack>
 
-          {/* nav */}
+
           <Stack direction="row" spacing={8}>
             {navLinks.map((link, index) =>
               link.route ? (
@@ -110,12 +108,12 @@ const AuthHeader = ({ onLogout }) => {
             )}
           </Stack>
 
-          {/* User info and logout */}
+
           <Stack direction="row" spacing={2} alignItems="center">
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
                 cursor: 'pointer',
                 '&:hover': {
                   opacity: 0.8
@@ -123,8 +121,8 @@ const AuthHeader = ({ onLogout }) => {
               }}
               onClick={handleProfileClick}
             >
-              <Avatar 
-                sx={{ 
+              <Avatar
+                sx={{
                   bgcolor: "#1976d2",
                   cursor: 'pointer'
                 }}

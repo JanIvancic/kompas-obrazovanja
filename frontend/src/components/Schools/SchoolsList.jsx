@@ -14,7 +14,6 @@ import {
 import { schoolsData } from './SchoolsData';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-// Import school images
 import schoolImage0 from "../../assets/images/schools/school_0.jpg";
 import schoolImage1 from "../../assets/images/schools/school_1.jpg";
 import schoolImage2 from "../../assets/images/schools/school_2.jpg";
@@ -22,7 +21,6 @@ import schoolImage3 from "../../assets/images/schools/school_3.jpg";
 import schoolImage4 from "../../assets/images/schools/school_4.jpg";
 import defaultSchoolImage from "../../assets/images/schools/default_school.jpg";
 
-// Map of school images by index
 const schoolImages = {
   0: schoolImage0,
   1: schoolImage1,
@@ -34,7 +32,6 @@ const schoolImages = {
 const SchoolsList = () => {
   const navigate = useNavigate();
 
-  // Extract unique counties and cities from schoolsData
   const counties = [...new Set(schoolsData.map(school => school.county))];
   const cities = {};
 
@@ -78,10 +75,8 @@ const SchoolsList = () => {
   };
 
   const handleSchoolClick = (index) => {
-    // Navigate to the school detail page
     navigate(`/schools/detail/${index}`);
 
-    // Add this line to ensure the page scrolls to the top
     window.scrollTo(0, 0);
   };
 
@@ -96,7 +91,7 @@ const SchoolsList = () => {
         </Typography>
       </Box>
 
-      {/* Filteri u jednom redu */}
+
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={{ xs: 2, sm: 6 }}
@@ -104,7 +99,7 @@ const SchoolsList = () => {
         justifyContent="center"
         sx={{ mb: 4, flexWrap: "wrap" }}
       >
-        {/* Županija */}
+
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1}>
           <Typography
             variant="subtitle1"
@@ -136,7 +131,7 @@ const SchoolsList = () => {
           </FormControl>
         </Stack>
 
-        {/* Grad */}
+
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1}>
           <Typography
             variant="subtitle1"
@@ -166,10 +161,9 @@ const SchoolsList = () => {
         </Stack>
       </Stack>
 
-      {/* Kartice škola */}
+
       {filteredSchools.length > 0 ? (
         filteredSchools.map((school, index) => {
-          // Find the actual index in the full schoolsData array
           const schoolIndex = schoolsData.findIndex(s =>
             s.name === school.name &&
             s.county === school.county &&

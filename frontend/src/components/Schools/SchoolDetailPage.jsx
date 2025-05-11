@@ -20,24 +20,21 @@ import {
 } from "@mui/material";
 import { schoolsData } from "./SchoolsData";
 
-// Import school images
-import schoolImage0 from "../../assets/images/schools/school_0.jpg";
-import schoolImage1 from "../../assets/images/schools/school_1.jpg";
+import prvaGimnazijaImage from "../../assets/images/schools/prva_gimnazija_varazdin_cover.jpeg";
+import drugaGimnazijaImage from "../../assets/images/schools/Druga-gimnazija-Varazdin.jpg";
 import schoolImage2 from "../../assets/images/schools/school_2.jpg";
 import schoolImage3 from "../../assets/images/schools/school_3.jpg";
 import schoolImage4 from "../../assets/images/schools/school_4.jpg";
 import defaultSchoolImage from "../../assets/images/schools/default_school.jpg";
 
-// Map of school images by index
 const schoolImages = {
-  0: schoolImage0,
-  1: schoolImage1,
+  0: prvaGimnazijaImage,
+  1: drugaGimnazijaImage,
   2: schoolImage2,
   3: schoolImage3,
   4: schoolImage4,
 };
 
-// These would be separate components in your actual implementation
 const HeaderSection = () => <Box sx={{ height: 0, bgcolor: "#fff" }}></Box>;
 const NavigationSection = () => <Box sx={{ height: 100, bgcolor: "#f8f9fa", my: 4 }}></Box>;
 const ProgramsSection = () => (
@@ -127,7 +124,6 @@ const TestimonialsSection = () => (
   </Box>
 );
 
-// Sample testimonials data
 const testimonials = [
   {
     name: "Marko Petrović",
@@ -173,7 +169,6 @@ const testimonials = [
   }
 ];
 
-// Program options for dropdown
 const programOptions = [
   "Opća gimnazija",
   "Prirodoslovno-matematička gimnazija",
@@ -181,7 +176,6 @@ const programOptions = [
   "IB Diploma Program"
 ];
 
-// Year options for dropdown
 const yearOptions = [
   "2022. - 2023.",
   "2020. - 2021.",
@@ -196,22 +190,16 @@ const SchoolDetailPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [testimonialFilter, setTestimonialFilter] = useState("all");
 
-  // Menu states
   const [programMenuAnchor, setProgramMenuAnchor] = useState(null);
   const [newsMenuAnchor, setNewsMenuAnchor] = useState(null);
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
-
-  // Scroll to top when component mounts
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Find the school by ID
   const school = schoolsData.find((s) => s.id === parseInt(schoolId)) ||
                  schoolsData.find((_, index) => index === parseInt(schoolId));
-
-  // If school not found, redirect to schools list
   React.useEffect(() => {
     if (!school) {
       navigate("/schools");
@@ -220,18 +208,22 @@ const SchoolDetailPage = () => {
 
   if (!school) return null;
 
-  // Get the appropriate school image or use default
   const schoolIndex = schoolsData.findIndex((s) => s === school);
-  const schoolImage = schoolImages[schoolIndex] || defaultSchoolImage;
 
-  // School contact data
+  let schoolImage;
+  if (school.name === "Prva gimnazija Varaždin") {
+    schoolImage = prvaGimnazijaImage;
+  } else if (school.name === "Druga gimnazija Varaždin") {
+    schoolImage = drugaGimnazijaImage;
+  } else {
+    schoolImage = schoolImages[schoolIndex] || defaultSchoolImage;
+  }
   const contactData = [
     { label: "Telefon:", value: school.tel },
     { label: "Email:", value: school.email, isEmail: true },
     { label: "Fax:", value: school.fax },
   ];
 
-  // Filter testimonials based on selected filter
   let filteredTestimonials = testimonials;
   if (testimonialFilter === "program" && selectedProgram) {
     filteredTestimonials = testimonials.filter(t => t.program === selectedProgram);
@@ -263,7 +255,6 @@ const SchoolDetailPage = () => {
     );
   };
 
-  // Program menu handlers
   const handleProgramMenuOpen = (event) => {
     setProgramMenuAnchor(event.currentTarget);
     setTestimonialFilter("program");
@@ -279,7 +270,6 @@ const SchoolDetailPage = () => {
     setCurrentTestimonial(0);
   };
 
-  // News menu handlers
   const handleNewsMenuOpen = (event) => {
     setNewsMenuAnchor(event.currentTarget);
     setTestimonialFilter("news");
@@ -295,7 +285,6 @@ const SchoolDetailPage = () => {
     setCurrentTestimonial(0);
   };
 
-  // Handle dot click
   const handleDotClick = (index) => {
     setCurrentTestimonial(index);
   };
@@ -346,7 +335,7 @@ const SchoolDetailPage = () => {
                 />
               </Grid>
               <Grid item xs={12} md={5}>
-                {/* Empty div removed */}
+
               </Grid>
             </Grid>
 
@@ -364,7 +353,7 @@ const SchoolDetailPage = () => {
               Opis škole
             </Typography>
 
-            {/* Update all ml values to be responsive */}
+
             <Box sx={{ mt: 4, ml: { xs: 2, sm: 6, md: 16 } }}>
               <Typography
                 sx={{
@@ -493,7 +482,7 @@ const SchoolDetailPage = () => {
               </Typography>
             </Box>
 
-            {/* Filter buttons with dropdowns */}
+
             <Box sx={{ mt: 2, ml: { xs: 2, sm: 6, md: 16 }, display: 'flex', gap: 2, mb: 4 }}>
               <Button
                 variant="contained"
@@ -576,7 +565,7 @@ const SchoolDetailPage = () => {
               </Button>
             </Box>
 
-            {/* Testimonials carousel - styled like the image */}
+
             {filteredTestimonials.length > 0 ? (
               <Box sx={{
                 ml: { xs: 2, sm: 6, md: 16 },
@@ -592,7 +581,7 @@ const SchoolDetailPage = () => {
                   width: '100%',
                   overflow: 'hidden'
                 }}>
-                  {/* First testimonial */}
+
                   <Paper
                     elevation={1}
                     sx={{
@@ -655,7 +644,7 @@ const SchoolDetailPage = () => {
                     </Typography>
                   </Paper>
 
-                  {/* Second testimonial */}
+
                   <Paper
                     elevation={1}
                     sx={{
@@ -718,7 +707,7 @@ const SchoolDetailPage = () => {
                     </Typography>
                   </Paper>
 
-                  {/* Third testimonial */}
+
                   <Paper
                     elevation={1}
                     sx={{
@@ -782,7 +771,7 @@ const SchoolDetailPage = () => {
                   </Paper>
                 </Box>
 
-                {/* Navigation arrows */}
+
                 <Box sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -814,7 +803,7 @@ const SchoolDetailPage = () => {
                   </IconButton>
                 </Box>
 
-                {/* Pagination dots */}
+
                 <Box sx={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -897,15 +886,26 @@ const SchoolDetailPage = () => {
                 >
                   Lokacija
                 </Typography>
+
                 <Box
-                  component="img"
-                  src={defaultSchoolImage} /* Using default school image instead of missing /image.png */
-                  alt="Map"
+                  component="iframe"
+                  src={
+                    school.name === "Prva gimnazija Varaždin"
+                      ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2756.8046534335!2d16.33499731580967!3d46.30536177911957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4768aa9f31f4315d%3A0xf3b3e46c7e5c8e2a!2sPetra%20Preradovi%C4%87a%2014%2C%2042000%2C%20Vara%C5%BEdin!5e0!3m2!1sen!2shr!4v1621345678901!5m2!1sen!2shr"
+                      : school.name === "Druga gimnazija Varaždin"
+                      ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2756.7046534335!2d16.33699731580967!3d46.30736177911957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4768aa9b8daef6a9%3A0xf2380e3a6dbe3929!2sHallerova%20aleja%206A%2C%2042000%2C%20Vara%C5%BEdin!5e0!3m2!1sen!2shr!4v1621345678901!5m2!1sen!2shr"
+                      : `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2756.7046534335!2d16.33699731580967!3d46.30736177911957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s${encodeURIComponent(school.address + ", " + school.city)}!5e0!3m2!1sen!2shr!4v1621345678901!5m2!1sen!2shr`
+                  }
+                  title={`Map showing location of ${school.name} at ${school.address}`}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                   sx={{
                     width: "100%",
                     maxWidth: 1105,
-                    height: "auto",
-                    maxHeight: 377,
+                    height: 377,
+                    border: 0,
+                    borderRadius: "8px",
                   }}
                 />
                 <Typography

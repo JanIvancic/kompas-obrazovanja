@@ -28,16 +28,12 @@ const SchoolProgramDetails = () => {
   const navigate = useNavigate();
   const [expandedProgram, setExpandedProgram] = useState(null);
 
-  // Scroll to top when component mounts
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Find the school by ID
-  const school = schoolsData.find((s) => s.id === parseInt(schoolId)) || 
+  const school = schoolsData.find((s) => s.id === parseInt(schoolId)) ||
                  schoolsData.find((_, index) => index === parseInt(schoolId));
-
-  // If school not found, redirect to schools list
   React.useEffect(() => {
     if (!school) {
       navigate("/schools");
@@ -46,7 +42,6 @@ const SchoolProgramDetails = () => {
 
   if (!school) return null;
 
-  // Data for program options with details
   const programOptions = [
     {
       name: "Opća gimnazija",
@@ -98,7 +93,6 @@ const SchoolProgramDetails = () => {
     },
   ];
 
-  // Data for timeline sections
   const sections = [
     {
       title: "Ljetni upisni rok",
@@ -182,12 +176,12 @@ const SchoolProgramDetails = () => {
   return (
     <Box sx={{ bgcolor: "#f8f9fa", minHeight: "100vh" }}>
       <Container maxWidth="lg" sx={{ pt: 4, pb: 8 }}>
-        {/* Back button */}
+
         <IconButton sx={{ mb: 2 }} onClick={handleBack}>
           <ArrowBackIcon />
         </IconButton>
 
-        {/* Main title */}
+
         <Typography
           variant="h2"
           component="h1"
@@ -200,7 +194,7 @@ const SchoolProgramDetails = () => {
           {school.name} - Nastavni program
         </Typography>
 
-        {/* Program selection */}
+
         <Box sx={{ display: "flex", flexDirection: "column", mb: 8, width: "100%", maxWidth: "800px" }}>
           <Typography
             variant="h4"
@@ -209,9 +203,9 @@ const SchoolProgramDetails = () => {
           >
             Obrazovni programi
           </Typography>
-          
+
           {programOptions.map((option, index) => (
-            <Paper 
+            <Paper
               key={index}
               elevation={1}
               sx={{
@@ -247,7 +241,7 @@ const SchoolProgramDetails = () => {
                   {option.name}
                 </Typography>
               </Button>
-              
+
               <Collapse in={expandedProgram === index}>
                 <Box sx={{ p: 3, bgcolor: "#f8f9fa" }}>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 3 }}>
@@ -258,14 +252,14 @@ const SchoolProgramDetails = () => {
                       <Typography variant="body1" sx={{ mb: 2 }}>
                         {option.details.duration}
                       </Typography>
-                      
+
                       <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
                         Broj učenika:
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 2 }}>
                         {option.details.students}
                       </Typography>
-                      
+
                       <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
                         Predmet od posebne važnosti za upis:
                       </Typography>
@@ -273,7 +267,7 @@ const SchoolProgramDetails = () => {
                         {option.details.importantSubject}
                       </Typography>
                     </Box>
-                    
+
                     <Box sx={{ minWidth: "200px", flex: 1 }}>
                       <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
                         Obvezni strani jezici:
@@ -281,14 +275,14 @@ const SchoolProgramDetails = () => {
                       <Typography variant="body1" sx={{ mb: 2 }}>
                         {option.details.languages}
                       </Typography>
-                      
+
                       <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
                         Izborni predmeti:
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 2 }}>
                         {option.details.optionalSubjects}
                       </Typography>
-                      
+
                       <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
                         Dodatne mogućnosti:
                       </Typography>
@@ -297,7 +291,7 @@ const SchoolProgramDetails = () => {
                       </Typography>
                     </Box>
                   </Box>
-                  
+
                   <Typography variant="body1" sx={{ mt: 2 }}>
                     {option.details.description}
                   </Typography>
@@ -317,9 +311,7 @@ const SchoolProgramDetails = () => {
           </Typography>
         </Box>
 
-        {/* Information sections */}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          {/* Main content - removed left and right sidebars */}
           <Stack spacing={6} sx={{ width: "100%", maxWidth: "800px", mx: "auto" }}>
             {sections.map((section, index) => (
               <Box key={index}>

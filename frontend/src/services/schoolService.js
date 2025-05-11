@@ -1,6 +1,5 @@
 const API_URL = 'http://localhost:5201/api';
 
-// Get all schools
 export const getSchools = async () => {
   try {
     const response = await fetch(`${API_URL}/schools`);
@@ -14,7 +13,6 @@ export const getSchools = async () => {
   }
 };
 
-// Get a single school by ID
 export const getSchoolById = async (id) => {
   try {
     const response = await fetch(`${API_URL}/schools/${id}`);
@@ -28,7 +26,6 @@ export const getSchoolById = async (id) => {
   }
 };
 
-// Get schools by county
 export const getSchoolsByCounty = async (county) => {
   try {
     const response = await fetch(`${API_URL}/schools/county/${county}`);
@@ -42,7 +39,6 @@ export const getSchoolsByCounty = async (county) => {
   }
 };
 
-// Get schools by city
 export const getSchoolsByCity = async (city) => {
   try {
     const response = await fetch(`${API_URL}/schools/city/${city}`);

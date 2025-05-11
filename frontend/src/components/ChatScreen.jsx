@@ -33,7 +33,6 @@ export default function ChatScreen() {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
 
-  // Function to move to the next conversation stage
   const moveToNextStage = (currentStage, skipCityQuestion = false) => {
     console.log(
       "DEBUG: moveToNextStage called with",
@@ -42,7 +41,6 @@ export default function ChatScreen() {
     );
     switch (currentStage) {
       case "initial":
-        // If we already have city information, skip directly to interests
         if (skipCityQuestion && userContext.city) {
           setUserContext((prev) => ({
             ...prev,
@@ -102,7 +100,6 @@ export default function ChatScreen() {
         ]);
         break;
       case "recommend":
-        // Already at recommendation stage, ask if they want more specific recommendations
         const msgRecommendStage = {
           sender: "bot",
           text: "Želiš li još neke specifične informacije o ovim školama ili te zanima neko drugo područje?",
@@ -115,21 +112,17 @@ export default function ChatScreen() {
         setMessages((prev) => [...prev, msgRecommendStage]);
         break;
       default:
-        // Reset to initial if something goes wrong
         setUserContext((prev) => ({ ...prev, conversationStage: "initial" }));
         break;
     }
   };
 
-  // Find schools based on user context (city and interests)
   const findSchoolsBasedOnContext = () => {
-    // Special case: Varaždin + matematika
     if (
       userContext.city &&
       userContext.city.toLowerCase() === "varaždin" &&
       userContext.interests.includes("matematika")
     ) {
-      // Print all Varaždin schools and their order for debugging
       const filtered = schoolsData.filter(
         (s) => s.city && s.city.toLowerCase() === "varaždin"
       );
@@ -146,7 +139,6 @@ export default function ChatScreen() {
     }
     const relevantSchools = [];
 
-    // Generate keywords based on interests
     const interestKeywords = [];
     const interestToKeywords = {
       matematika: ["matematička", "prirodoslovna", "gimnazija"],

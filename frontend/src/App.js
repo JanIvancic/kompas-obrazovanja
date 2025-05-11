@@ -24,20 +24,17 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if user is authenticated on component mount
     const authStatus = localStorage.getItem('isAuthenticated');
     if (authStatus === 'true') {
       setIsAuthenticated(true);
     }
   }, []);
 
-  // Function to handle successful login
   const handleLogin = () => {
     localStorage.setItem('isAuthenticated', 'true');
     setIsAuthenticated(true);
   };
 
-  // Function to handle logout
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
     setIsAuthenticated(false);
@@ -60,12 +57,10 @@ function App() {
             element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />}
           />
           <Route path="/schools" element={<SchoolsList />} />
-          {/* Fixed school routes to match navigation in components */}
           <Route path="/schools/:id" element={<SchoolDetailPage />} />
           <Route path="/school/:id" element={<SchoolDetailPage />} />
           <Route path="/schools/detail/:schoolId" element={<SchoolDetailPage />} />
           <Route path="/schools/program/:schoolId" element={<SchoolProgramDetails />} />
-          {/* Removed duplicate chat route */}
           <Route path="/chat" element={<ChatScreen />} />
           <Route path="/tests" element={<TestPage />} />
           <Route path="/test-list" element={<TestListPage />} />
