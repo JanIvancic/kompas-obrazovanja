@@ -33,11 +33,11 @@ const schoolImages = {
 
 const SchoolsList = () => {
   const navigate = useNavigate();
-  
+
   // Extract unique counties and cities from schoolsData
   const counties = [...new Set(schoolsData.map(school => school.county))];
   const cities = {};
-  
+
   counties.forEach(county => {
     cities[county] = [...new Set(
       schoolsData
@@ -79,8 +79,8 @@ const SchoolsList = () => {
 
   const handleSchoolClick = (index) => {
     // Navigate to the school detail page
-    navigate(`/schools/${index}`);
-    
+    navigate(`/schools/detail/${index}`);
+
     // Add this line to ensure the page scrolls to the top
     window.scrollTo(0, 0);
   };
@@ -95,7 +95,7 @@ const SchoolsList = () => {
           Pregledajte popis škola po županijama i gradovima
         </Typography>
       </Box>
-      
+
       {/* Filteri u jednom redu */}
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
@@ -170,12 +170,12 @@ const SchoolsList = () => {
       {filteredSchools.length > 0 ? (
         filteredSchools.map((school, index) => {
           // Find the actual index in the full schoolsData array
-          const schoolIndex = schoolsData.findIndex(s => 
-            s.name === school.name && 
-            s.county === school.county && 
+          const schoolIndex = schoolsData.findIndex(s =>
+            s.name === school.name &&
+            s.county === school.county &&
             s.city === school.city
           );
-          
+
           return (
             <Card
               key={index}
@@ -189,10 +189,10 @@ const SchoolsList = () => {
                 mx: 'auto'
               }}
             >
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  fontWeight: 600, 
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
                   mb: 1,
                   cursor: 'pointer',
                   color: '#2fa4ff',

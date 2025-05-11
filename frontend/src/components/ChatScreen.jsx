@@ -9,7 +9,7 @@ import {
   Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { schoolsData } from "../SchoolsData";
+import { schoolsData } from "./Schools/SchoolsData";
 
 const WELCOME_KEY = "kompasWelcomeShown";
 
@@ -236,7 +236,7 @@ export default function ChatScreen() {
 
   // Function to navigate to school details
   const handleSchoolClick = (schoolId) => {
-    navigate(`/schools/${schoolId}`);
+    navigate(`/schools/detail/${schoolId}`);
   };
 
   // Function to render message text with clickable school links

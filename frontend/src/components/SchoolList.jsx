@@ -8,7 +8,7 @@ import {
   FormControl,
   Stack,
 } from "@mui/material";
-import { schoolsData } from "../SchoolsData";
+import { schoolsData } from "./Schools/SchoolsData";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const counties = ["Varaždinska županija", "Međimurska županija"];

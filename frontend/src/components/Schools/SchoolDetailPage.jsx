@@ -195,20 +195,20 @@ const SchoolDetailPage = () => {
   const navigate = useNavigate();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [testimonialFilter, setTestimonialFilter] = useState("all");
-  
+
   // Menu states
   const [programMenuAnchor, setProgramMenuAnchor] = useState(null);
   const [newsMenuAnchor, setNewsMenuAnchor] = useState(null);
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
-  
+
   // Scroll to top when component mounts
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   // Find the school by ID
-  const school = schoolsData.find((s) => s.id === parseInt(schoolId)) || 
+  const school = schoolsData.find((s) => s.id === parseInt(schoolId)) ||
                  schoolsData.find((_, index) => index === parseInt(schoolId));
 
   // If school not found, redirect to schools list
@@ -252,13 +252,13 @@ const SchoolDetailPage = () => {
   };
 
   const handleNextTestimonial = () => {
-    setCurrentTestimonial((prev) => 
+    setCurrentTestimonial((prev) =>
       prev === filteredTestimonials.length - 1 ? 0 : prev + 1
     );
   };
 
   const handlePrevTestimonial = () => {
-    setCurrentTestimonial((prev) => 
+    setCurrentTestimonial((prev) =>
       prev === 0 ? filteredTestimonials.length - 1 : prev - 1
     );
   };
@@ -523,7 +523,7 @@ const SchoolDetailPage = () => {
                   </MenuItem>
                 ))}
               </Menu>
-              
+
               <Button
                 variant="contained"
                 endIcon={<KeyboardArrowDownIcon />}
@@ -552,7 +552,7 @@ const SchoolDetailPage = () => {
                   </MenuItem>
                 ))}
               </Menu>
-              
+
               <Button
                 variant="outlined"
                 sx={{
@@ -578,13 +578,13 @@ const SchoolDetailPage = () => {
 
             {/* Testimonials carousel - styled like the image */}
             {filteredTestimonials.length > 0 ? (
-              <Box sx={{ 
-                ml: { xs: 2, sm: 6, md: 16 }, 
+              <Box sx={{
+                ml: { xs: 2, sm: 6, md: 16 },
                 mr: { xs: 2, sm: 6, md: 16 },
                 position: 'relative',
                 pb: 8
               }}>
-                <Box sx={{ 
+                <Box sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'row' },
                   gap: 3,
@@ -593,10 +593,10 @@ const SchoolDetailPage = () => {
                   overflow: 'hidden'
                 }}>
                   {/* First testimonial */}
-                  <Paper 
+                  <Paper
                     elevation={1}
-                    sx={{ 
-                      p: 4, 
+                    sx={{
+                      p: 4,
                       borderRadius: 2,
                       bgcolor: '#e6f4fc',
                       flex: 1,
@@ -617,7 +617,7 @@ const SchoolDetailPage = () => {
                     >
                       {filteredTestimonials[currentTestimonial % filteredTestimonials.length].name}
                     </Typography>
-                    
+
                     <Box sx={{ mb: 2 }}>
                       <Typography
                         sx={{
@@ -629,7 +629,7 @@ const SchoolDetailPage = () => {
                       >
                         <strong>Smjer:</strong> {filteredTestimonials[currentTestimonial % filteredTestimonials.length].program}
                       </Typography>
-                      
+
                       <Typography
                         sx={{
                           fontFamily: "Lato-Regular, Helvetica",
@@ -641,7 +641,7 @@ const SchoolDetailPage = () => {
                         <strong>Akademska godina:</strong> {filteredTestimonials[currentTestimonial % filteredTestimonials.length].years}
                       </Typography>
                     </Box>
-                    
+
                     <Typography
                       sx={{
                         fontFamily: "Lato-Regular, Helvetica",
@@ -654,12 +654,12 @@ const SchoolDetailPage = () => {
                       <strong>Osvrt:</strong> {filteredTestimonials[currentTestimonial % filteredTestimonials.length].text}
                     </Typography>
                   </Paper>
-                  
+
                   {/* Second testimonial */}
-                  <Paper 
+                  <Paper
                     elevation={1}
-                    sx={{ 
-                      p: 4, 
+                    sx={{
+                      p: 4,
                       borderRadius: 2,
                       bgcolor: '#e6f4fc',
                       flex: 1,
@@ -680,7 +680,7 @@ const SchoolDetailPage = () => {
                     >
                       {filteredTestimonials[(currentTestimonial + 1) % filteredTestimonials.length].name}
                     </Typography>
-                    
+
                     <Box sx={{ mb: 2 }}>
                       <Typography
                         sx={{
@@ -692,7 +692,7 @@ const SchoolDetailPage = () => {
                       >
                         <strong>Smjer:</strong> {filteredTestimonials[(currentTestimonial + 1) % filteredTestimonials.length].program}
                       </Typography>
-                      
+
                       <Typography
                         sx={{
                           fontFamily: "Lato-Regular, Helvetica",
@@ -704,7 +704,7 @@ const SchoolDetailPage = () => {
                         <strong>Akademska godina:</strong> {filteredTestimonials[(currentTestimonial + 1) % filteredTestimonials.length].years}
                       </Typography>
                     </Box>
-                    
+
                     <Typography
                       sx={{
                         fontFamily: "Lato-Regular, Helvetica",
@@ -717,12 +717,12 @@ const SchoolDetailPage = () => {
                       <strong>Osvrt:</strong> {filteredTestimonials[(currentTestimonial + 1) % filteredTestimonials.length].text}
                     </Typography>
                   </Paper>
-                  
+
                   {/* Third testimonial */}
-                  <Paper 
+                  <Paper
                     elevation={1}
-                    sx={{ 
-                      p: 4, 
+                    sx={{
+                      p: 4,
                       borderRadius: 2,
                       bgcolor: '#e6f4fc',
                       flex: 1,
@@ -743,7 +743,7 @@ const SchoolDetailPage = () => {
                     >
                       {filteredTestimonials[(currentTestimonial + 2) % filteredTestimonials.length].name}
                     </Typography>
-                    
+
                     <Box sx={{ mb: 2 }}>
                       <Typography
                         sx={{
@@ -755,7 +755,7 @@ const SchoolDetailPage = () => {
                       >
                         <strong>Smjer:</strong> {filteredTestimonials[(currentTestimonial + 2) % filteredTestimonials.length].program}
                       </Typography>
-                      
+
                       <Typography
                         sx={{
                           fontFamily: "Lato-Regular, Helvetica",
@@ -767,7 +767,7 @@ const SchoolDetailPage = () => {
                         <strong>Akademska godina:</strong> {filteredTestimonials[(currentTestimonial + 2) % filteredTestimonials.length].years}
                       </Typography>
                     </Box>
-                    
+
                     <Typography
                       sx={{
                         fontFamily: "Lato-Regular, Helvetica",
@@ -781,11 +781,11 @@ const SchoolDetailPage = () => {
                     </Typography>
                   </Paper>
                 </Box>
-                
+
                 {/* Navigation arrows */}
-                <Box sx={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
                   position: 'absolute',
                   width: '100%',
                   left: 0,
@@ -794,30 +794,30 @@ const SchoolDetailPage = () => {
                   px: 2,
                   zIndex: 1
                 }}>
-                  <IconButton 
+                  <IconButton
                     onClick={handlePrevTestimonial}
-                    sx={{ 
-                      bgcolor: 'rgba(255,255,255,0.8)', 
-                      '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' } 
+                    sx={{
+                      bgcolor: 'rgba(255,255,255,0.8)',
+                      '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' }
                     }}
                   >
                     <ArrowBackIosIcon />
                   </IconButton>
-                  <IconButton 
+                  <IconButton
                     onClick={handleNextTestimonial}
-                    sx={{ 
-                      bgcolor: 'rgba(255,255,255,0.8)', 
-                      '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' } 
+                    sx={{
+                      bgcolor: 'rgba(255,255,255,0.8)',
+                      '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' }
                     }}
                   >
                     <ArrowForwardIosIcon />
                   </IconButton>
                 </Box>
-                
+
                 {/* Pagination dots */}
-                <Box sx={{ 
-                  display: 'flex', 
-                  justifyContent: 'center', 
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
                   mt: 2,
                   position: 'absolute',
                   bottom: 10,
@@ -899,7 +899,7 @@ const SchoolDetailPage = () => {
                 </Typography>
                 <Box
                   component="img"
-                  src="/image.png"
+                  src={defaultSchoolImage} /* Using default school image instead of missing /image.png */
                   alt="Map"
                   sx={{
                     width: "100%",

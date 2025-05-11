@@ -1,3 +1,4 @@
+
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -17,6 +18,7 @@ import TestPage from './components/TestPage';
 import TestListPage from './components/TestListPage';
 import IskustvoFinalno from './components/IskustvoFinalno';
 import SchoolDetailPage from './components/Schools/SchoolDetailPage';
+import SchoolProgramDetails from './components/Schools/SchoolProgramDetails';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,8 +46,8 @@ function App() {
   return (
     <Router>
       <div className="App" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-        {isAuthenticated ? 
-          <AuthHeader onLogout={handleLogout} /> : 
+        {isAuthenticated ?
+          <AuthHeader onLogout={handleLogout} /> :
           <Header />
         }
         <Routes>
@@ -53,19 +55,23 @@ function App() {
           <Route path="/login" element={<LoginPage onLoginSuccess={handleLogin} />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/support" element={<SupportPage />} />
-          <Route 
-            path="/profile" 
-            element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} 
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />}
           />
           <Route path="/schools" element={<SchoolsList />} />
+          {/* Fixed school routes to match navigation in components */}
+          <Route path="/schools/:id" element={<SchoolDetailPage />} />
           <Route path="/school/:id" element={<SchoolDetailPage />} />
+          <Route path="/schools/detail/:schoolId" element={<SchoolDetailPage />} />
+          <Route path="/schools/program/:schoolId" element={<SchoolProgramDetails />} />
+          {/* Removed duplicate chat route */}
           <Route path="/chat" element={<ChatScreen />} />
-          <Route path="/chat" element={<ChatPage />} />
           <Route path="/tests" element={<TestPage />} />
           <Route path="/test-list" element={<TestListPage />} />
-          <Route 
-            path="/iskustvo-finalno" 
-            element={isAuthenticated ? <IskustvoFinalno /> : <Navigate to="/login" />} 
+          <Route
+            path="/iskustvo-finalno"
+            element={isAuthenticated ? <IskustvoFinalno /> : <Navigate to="/login" />}
           />
         </Routes>
         <Footer />
