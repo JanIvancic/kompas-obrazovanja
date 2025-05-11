@@ -31,7 +31,7 @@ const Header = () => {
     { title: "Početna", active: true, route: "/" },
     { title: "Chatbot", active: true, route: "/chat" },
     { title: "Testovi", active: true, route: "/tests" },
-    { title: "Popis škola", active: true, route: "/school" },
+    { title: "Popis škola", active: true, route: "/schools" },
   ];
 
   return (
