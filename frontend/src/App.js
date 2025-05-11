@@ -10,6 +10,8 @@ import RegistrationPage from './components/RegistrationPage';
 import SupportPage from './components/SupportPage';
 import ProfilePage from './components/ProfilePage';
 import SchoolsList from './components/Schools/SchoolsList';
+import ChatWidget from './components/ChatWidget';
+import ChatScreen from './components/ChatScreen';
 import ChatPage from './components/ChatPage';
 import TestPage from './components/TestPage';
 import TestListPage from './components/TestListPage';
@@ -46,6 +48,7 @@ function App() {
             element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} 
           />
           <Route path="/schools" element={<SchoolsList />} />
+          <Route path="/chat" element={<ChatScreen />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/tests" element={<TestPage />} />
           <Route path="/test-list" element={<TestListPage />} />
@@ -55,6 +58,7 @@ function App() {
           />
         </Routes>
         <Footer />
+        <ChatWidget />
       </div>
     </Router>
   );
