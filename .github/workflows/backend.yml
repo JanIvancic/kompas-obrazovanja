@@ -1,0 +1,108 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./backend
+        
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+        cache-dependency-path: './backend/requirements.txt'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pytest pytest-cov
+    
+    - name: Test with pytest
+      run: |
+        pytest --cov=. --cov-report=xml
+      env:
+        FLASK_ENV: testing
+        REDIS_URL: redis://localhost:6379/0
+        
+    - name: Upload test coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./backend/coverage.xml
+        
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # Choose one of the deployment options below based on your hosting provider
+    
+    # Option 1: Deploy to Heroku
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.13
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "your-app-name"
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        appdir: "backend"
+        
+    # Option 2: Deploy to Azure App Service
+    # - name: Deploy to Azure Web App
+    #   uses: azure/webapps-deploy@v2
+    #   with:
+    #     app-name: 'your-app-name'
+    #     slot-name: 'production'
+    #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+    #     package: ./backend
+    
+    # Option 3: Deploy to AWS Elastic Beanstalk
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: eu-central-1
+    
+    # - name: Generate deployment package
+    #   run: zip -r deploy.zip . -x "*.git*"
+    #   working-directory: ./backend
+    
+    # - name: Deploy to EB
+    #   uses: einaregilsson/beanstalk-deploy@v21
+    #   with:
+    #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     application_name: your-application-name
+    #     environment_name: your-environment-name
+    #     version_label: ${{ github.sha }}
+    #     region: eu-central-1
+    #     deployment_package: ./backend/deploy.zip

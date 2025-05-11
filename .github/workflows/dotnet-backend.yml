@@ -1,0 +1,112 @@
+name: .NET Backend CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/dotnet-backend.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/dotnet-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./backend
+        
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --configuration Release
+      env:
+        REDIS_CONNECTION_STRING: redis://localhost:6379
+        
+    - name: Publish
+      run: dotnet publish --configuration Release --output ./publish
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: backend-build
+        path: backend/publish/
+        
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend-build
+        
+    # Choose one of the deployment options below based on your hosting provider
+    
+    # Option 1: Deploy to Azure App Service
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'kompas-obrazovanja-api'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: backend-build
+    
+    # Option 2: Deploy to AWS Elastic Beanstalk
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: eu-central-1
+    # 
+    # - name: Generate deployment package
+    #   run: zip -r deploy.zip backend-build
+    # 
+    # - name: Deploy to EB
+    #   uses: einaregilsson/beanstalk-deploy@v21
+    #   with:
+    #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     application_name: kompas-obrazovanja
+    #     environment_name: kompas-obrazovanja-prod
+    #     version_label: ${{ github.sha }}
+    #     region: eu-central-1
+    #     deployment_package: deploy.zip
+    
+    # Option 3: Deploy to IIS on Windows Server
+    # - name: Deploy to IIS via FTP
+    #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     username: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.FTP_PASSWORD }}
+    #     local-dir: backend-build/
+    #     server-dir: /wwwroot/kompas-obrazovanja-api/
