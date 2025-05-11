@@ -13,6 +13,7 @@ import {
   inputBaseClasses
 } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
   const [userData, setUserData] = React.useState({
@@ -43,6 +44,8 @@ export default function ProfilePage() {
       bgcolor: "#1a93ee",
     },
   };
+
+  const navigate = useNavigate();
 
   return (
     <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, md: 4 } }}>
@@ -220,7 +223,11 @@ export default function ProfilePage() {
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                   Napiši svoje iskustvo o školi i smjeru kojeg si pohađao/la.
                 </Typography>
-                <Button variant="contained" sx={{ ...buttonStyle }}>
+                <Button 
+                  variant="contained" 
+                  sx={{ ...buttonStyle }}
+                  onClick={() => navigate("/iskustvo-finalno")}
+                >
                   Započni
                 </Button>
               </Card>

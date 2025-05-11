@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -58,6 +58,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn(props) {
+  const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -65,15 +66,25 @@ export default function SignIn(props) {
   //const [open, setOpen] = React.useState(false);
 
   const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
+    event.preventDefault();
+    
+    if (validateInputs()) {
+      const data = new FormData(event.currentTarget);
+      const email = data.get("email");
+      const password = data.get("password");
+      
+      console.log({ email, password });
+      
+      // Check for test credentials
+      if (email === "test@test.com" && password === "1234") {
+        // Call the login success handler from props
+        if (props.onLoginSuccess) {
+          props.onLoginSuccess();
+        }
+        // Redirect to IskustvoFinalno page
+        navigate("/iskustvo-finalno");
+      }
     }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   const validateInputs = () => {
@@ -81,6 +92,15 @@ export default function SignIn(props) {
     const password = document.getElementById("password");
 
     let isValid = true;
+
+    // Special case for test credentials
+    if (email.value === "test@test.com" && password.value === "1234") {
+      setEmailError(false);
+      setEmailErrorMessage("");
+      setPasswordError(false);
+      setPasswordErrorMessage("");
+      return true;
+    }
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);

@@ -9,10 +9,27 @@ import {
   Stack,
   Card,
   Container,
-  Link
+  CardMedia
 } from '@mui/material';
 import { schoolsData } from './SchoolsData';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+// Import school images
+import schoolImage0 from "../../assets/images/schools/school_0.jpg";
+import schoolImage1 from "../../assets/images/schools/school_1.jpg";
+import schoolImage2 from "../../assets/images/schools/school_2.jpg";
+import schoolImage3 from "../../assets/images/schools/school_3.jpg";
+import schoolImage4 from "../../assets/images/schools/school_4.jpg";
+import defaultSchoolImage from "../../assets/images/schools/default_school.jpg";
+
+// Map of school images by index
+const schoolImages = {
+  0: schoolImage0,
+  1: schoolImage1,
+  2: schoolImage2,
+  3: schoolImage3,
+  4: schoolImage4,
+};
 
 const SchoolsList = () => {
   const navigate = useNavigate();
@@ -32,10 +49,8 @@ const SchoolsList = () => {
   const [selectedCounty, setSelectedCounty] = useState(counties[0]);
   const [selectedCity, setSelectedCity] = useState(cities[counties[0]][0]);
 
-  const filteredSchools = schoolsData.filter(
-    (school) =>
-      school.county === selectedCounty && school.city === selectedCity
-  );
+  const filteredSchools = schoolsData
+    .filter(school => school.county === selectedCounty && school.city === selectedCity);
 
   const selectStyle = {
     bgcolor: "#2fa4ff",
@@ -63,7 +78,11 @@ const SchoolsList = () => {
   };
 
   const handleSchoolClick = (index) => {
+    // Navigate to the school detail page
     navigate(`/schools/${index}`);
+    
+    // Add this line to ensure the page scrolls to the top
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -149,31 +168,53 @@ const SchoolsList = () => {
 
       {/* Kartice škola */}
       {filteredSchools.length > 0 ? (
-        filteredSchools.map((school, index) => (
-          <Card
-            key={index}
-            sx={{
-              p: 3,
-              mb: 4,
-              borderRadius: "10px",
-              boxShadow: "0px 3px 8px rgba(0,0,0,0.1)",
-              textAlign: "left",
-              maxWidth: 800,
-              mx: 'auto'
-            }}
-          >
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
-              {school.name}
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 0.5 }}>
-              {school.address}
-            </Typography>
-            <Typography variant="body2">tel: {school.tel}</Typography>
-            <Typography variant="body2">fax: {school.fax}</Typography>
-            <Typography variant="body2">e-mail: {school.email}</Typography>
-            <Typography variant="body2">web: {school.web}</Typography>
-          </Card>
-        ))
+        filteredSchools.map((school, index) => {
+          // Find the actual index in the full schoolsData array
+          const schoolIndex = schoolsData.findIndex(s => 
+            s.name === school.name && 
+            s.county === school.county && 
+            s.city === school.city
+          );
+          
+          return (
+            <Card
+              key={index}
+              sx={{
+                p: 3,
+                mb: 4,
+                borderRadius: "10px",
+                boxShadow: "0px 3px 8px rgba(0,0,0,0.1)",
+                textAlign: "left",
+                maxWidth: 800,
+                mx: 'auto'
+              }}
+            >
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  fontWeight: 600, 
+                  mb: 1,
+                  cursor: 'pointer',
+                  color: '#2fa4ff',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                    color: '#1a93ee'
+                  }
+                }}
+                onClick={() => handleSchoolClick(schoolIndex)}
+              >
+                {school.name}
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 0.5 }}>
+                {school.address}
+              </Typography>
+              <Typography variant="body2">tel: {school.tel}</Typography>
+              <Typography variant="body2">fax: {school.fax}</Typography>
+              <Typography variant="body2">e-mail: {school.email}</Typography>
+              <Typography variant="body2">web: {school.web}</Typography>
+            </Card>
+          );
+        })
       ) : (
         <Typography variant="body1" sx={{ textAlign: 'center' }}>
           Nema dostupnih škola za odabrani grad i županiju.
